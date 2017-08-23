@@ -10,16 +10,18 @@
 
   class StoreComponent {
 
+    /* add component dependencies*/
     constructor(configApi) {
       this.configApi = configApi;
     }
 
+    /*on init life sycle*/
     $onInit() {
       this.name = this.store.replace('-', ' ').toLowerCase();
       this.src  = `${this.configApi.store}/${this.store.replace('-', '').toLowerCase()}.png`;
       this.data = this.store.toLowerCase();
     }
-
+    /*on change life sycle for one wat data bindings*/
     $onChanges(change){}
 
     onClick(name){
@@ -40,10 +42,10 @@
             <i class="ion-chevron-right color-blue-main"></i>
         </div>
       `,
-      controller: ['configApi', StoreComponent],
+      controller: ['configApi', StoreComponent], /// the quotes are the dependencies
       bindings: {
-        store: '<',
-        onUpdate: '&'
+        store: '<', // one way binding
+        onUpdate: '&' //pass referance function from parent component = emit to parent
       }
     });
 
